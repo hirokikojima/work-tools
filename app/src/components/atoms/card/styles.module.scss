@@ -2,4 +2,12 @@
   background: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 5px #ccc;
+
+  &_header {
+    border-bottom: solid 1px #ccc;
+  }
+
+  &_footer {
+    border-top: solid 1px #ccc;
+  }
 }
