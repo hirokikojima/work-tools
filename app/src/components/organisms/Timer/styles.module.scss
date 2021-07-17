@@ -1,0 +1,12 @@
+.timer {
+  display: flex;
+  justify-content: space-between;
+
+  &_left {
+    padding: 12px 8px;
+  }
+
+  &_right {
+    padding: 12px 8px;
+  }
+}
