@@ -1,0 +1,29 @@
+.button {
+  border: none;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 8px 12px;
+
+  &:active {
+    box-shadow: none;
+  }
+
+  &_default {
+    background-color: #fafdff;
+    color: #000;
+  }
+
+  &_success {
+    background-color: #00ac97;
+    color: #fff;
+  }
+
+  &_warning {
+    background-color: #ffdc00;
+    color: #fff;
+  }
+
+  &_danger {
+    background-color: #ea5532;
+    color: #fff;
+  }
+}
