@@ -1,56 +1,54 @@
-type CountDownCallback = (seconds: number) => void
+import EventEmitter from "../../libs/EventEmitter";
 
 export default class Timer {
-  private seconds: number
-  private intervalId?: number
-  private countDownCallback?: CountDownCallback
+  private seconds: number;
+  private current: number;
+  private intervalId?: number;
+  private eventEmitter?: EventEmitter<number>;
 
   constructor(seconds = 0) {
-    this.seconds = seconds
-  }
-
-  getSeconds(): number {
-    return this.seconds
+    this.seconds = seconds;
+    this.current = seconds;
+    this.eventEmitter?.emit(this.current)
   }
 
   setSeconds(seconds: number): Timer {
     this.seconds = seconds
-    return this
+    this.current = seconds
+    this.eventEmitter?.emit(this.current)
+    return this;
   }
 
-  setCountDownCallback(countDownCallback: CountDownCallback): Timer {
-    this.countDownCallback = countDownCallback
-    return this
-  }
-
-  reset(): Timer {
-    this.seconds = 0
-    return this
+  setEventEmitter(eventEmitter: EventEmitter<number>): Timer {
+    this.eventEmitter = eventEmitter;
+    return this;
   }
 
   start(): void {
-    console.log(this.intervalId)
     if (!this.intervalId) {
-      this.intervalId = window.setInterval(() => this.countDown(), 1000)
+      this.intervalId = window.setInterval(() => this.countDown(), 1000);
     }
   }
 
   stop(): void {
     if (this.intervalId) {
-      window.clearInterval(this.intervalId)
-      this.intervalId = undefined
+      window.clearInterval(this.intervalId);
+      this.intervalId = undefined;
     }
   }
 
-  private countDown() {
-    this.seconds = this.seconds - 1
-    
-    if (this.countDownCallback) {
-      this.countDownCallback(this.seconds)
-    }
+  reset(): void {
+    this.current = this.seconds;
+    this.eventEmitter?.emit(this.current)
+  }
 
-    if (this.seconds <= 0) {
+  private countDown() {
+    this.current = this.current - 1;
+    this.eventEmitter?.emit(this.current)
+
+    if (this.current <= 0) {
       this.stop()
+      this.reset()
     }
   }
 }
