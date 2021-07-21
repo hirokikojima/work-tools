@@ -1,21 +1,21 @@
 import React, { FC } from 'react'
 import { DefaultButton } from '../../atoms/Button'
 import Card, { CardHeader, CardBody} from '../../atoms/Card'
-import Timer from '../../organisms/Timer'
+import TimerList from '../../organisms/TimerList'
 
 export type Props = {
-  seconds: number
-  onChangeTimer: (seconds: number) => void
+  secondsList: number[]
+  onChangeTimerList: (seconds: number, index: number) => void
   onClickStartTimer: () => void
   onClickStopTimer: () => void
 }
 
 const TimerPageTemplate: FC<Props> = (props: Props) => {
   const {
-    seconds,
+    secondsList,
+    onChangeTimerList,
     onClickStartTimer,
     onClickStopTimer,
-    onChangeTimer
   } = props
   
   return (
@@ -29,9 +29,9 @@ const TimerPageTemplate: FC<Props> = (props: Props) => {
         </DefaultButton>
       </CardHeader>
       <CardBody>
-        <Timer
-          seconds={seconds}
-          onChangeSeconds={onChangeTimer}
+        <TimerList
+          secondsList={secondsList}
+          onChangeSeconds={onChangeTimerList}
         />
       </CardBody>
     </Card>
