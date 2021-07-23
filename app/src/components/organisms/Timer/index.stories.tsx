@@ -2,6 +2,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react';
 
+import TimerModal from '../../../domains/models/Timer'
 import Timer, { Props } from './index';
 
 export default {
@@ -11,7 +12,8 @@ export default {
 
 export const Default: Story<Props> = () => (
   <Timer
-    seconds={1234}
-    onChangeSeconds={action('onChanged!!')}
+    timer={new TimerModal(120)}
+    onChangeTimer={action('onChangeTimer')}
+    onFinishTimer={action('onFinishTimer')}
   />
 )

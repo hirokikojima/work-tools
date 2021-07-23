@@ -1,22 +1,28 @@
 import React, { FC } from 'react'
 import styles from './styles.module.scss'
+import TimerModel from '../../../domains/models/Timer'
 import TimeUtil from '../../../utils/TimeUtil'
+import useTimer from './useTimer'
 
 export type Props = {
-  seconds: number
-  onChangeSeconds: (seconds: number) => void
+  timer: TimerModel
+  onChangeTimer: (timer: TimerModel, seconds: number) => void
+  onFinishTimer: (timer: TimerModel) => void
 }
 
 const Timer: FC<Props> = (props: Props) => {
   const {
-    seconds,
-    onChangeSeconds
+    timer,
+    onChangeTimer,
+    onFinishTimer
   } = props
+
+  const { seconds } = useTimer(timer, onFinishTimer)
 
   const time = TimeUtil.secondsToTime(seconds)
 
   const onChange = (event: React.FocusEvent<HTMLInputElement>) => {
-    onChangeSeconds(Number(event.target.value))
+    onChangeTimer(timer, Number(event.target.value))
   }
 
   return (

@@ -1,8 +1,10 @@
+import EventEmitter from '../../libs/EventEmitter'
 import Timer from './Timer'
 
 export default class TimerSet {
   private timers: Timer[]
   private current: number
+  private eventEmitter?: EventEmitter<number[]>
 
   constructor() {
     this.current = 0

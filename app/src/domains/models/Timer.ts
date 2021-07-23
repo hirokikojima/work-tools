@@ -1,8 +1,8 @@
 import EventEmitter from "../../libs/EventEmitter";
 
 export default class Timer {
-  private seconds: number;
-  private current: number;
+  public seconds: number;
+  public current: number;
   private intervalId?: number;
   private eventEmitter?: EventEmitter<number>;
 

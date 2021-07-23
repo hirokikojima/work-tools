@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Story, Meta } from '@storybook/react';
 
 import TimerPageTemplate, { Props } from './index';
-import Timer from '../../../domains/models/Timer';
-import EventEmitter from '../../../libs/EventEmitter';
+import TimerModel from '../../../domains/models/Timer';
 import { action } from '@storybook/addon-actions';
 
 export default {
@@ -14,10 +13,12 @@ export default {
 export const Default: Story<Props> = () => {
   return (
     <TimerPageTemplate
-      secondsList={[0, 60, 120]}
-      onChangeTimerList={action('onChangeTimer!!')}
-      onClickStartTimer={action('onClickStartTimer!!')}
-      onClickStopTimer={action('onClickStopTimer!!')}
+      timers={[new TimerModel(0), new TimerModel(60), new TimerModel(120)]}
+      currentTimerIndex={0}
+      onChangeTimer={action('onChangeTimer')}
+      onClickStartTimer={action('onClickStartTimer')}
+      onClickStopTimer={action('onClickStopTimer')}
+      onFinishTimer={action('onFinishTimer')}
     />
   )
 }

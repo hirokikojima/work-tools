@@ -2,6 +2,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react';
 
+import TimerModel from '../../../domains/models/Timer'
 import TimerList, { Props } from './index';
 
 export default {
@@ -9,9 +10,12 @@ export default {
   component: TimerList,
 } as Meta;
 
+
+
 export const Default: Story<Props> = () => (
   <TimerList
-    secondsList={[0, 60, 120]}
-    onChangeSeconds={action('onChanged!!')}
+    timers={[new TimerModel(0), new TimerModel(60), new TimerModel(120)]}
+    onChangeTimer={action('onChangeTimer')}
+    onFinishTimer={action('onFinishTimer')}
   />
 )

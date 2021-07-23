@@ -1,27 +1,31 @@
 import React, { FC } from 'react'
 import classNames from 'classnames'
 import styles from './styles.module.scss'
+import TimerModel from '../../../domains/models/Timer'
 import Timer from '../Timer'
 
 export type Props = {
-  secondsList: number[]
-  onChangeSeconds: (seconds: number, index: number) => void
+  timers: TimerModel[]
+  onChangeTimer: (timer: TimerModel, seconds: number) => void
+  onFinishTimer: (timer: TimerModel) => void
 }
 
 const TimerList: FC<Props> = (props: Props) => {
   const {
-    secondsList,
-    onChangeSeconds
+    timers,
+    onChangeTimer,
+    onFinishTimer
   } = props
 
   return (
     <div>
       {
-        secondsList.map((seconds, index) => (
+        timers.map((timer, index) => (
           <Timer
             key={index}
-            seconds={seconds}
-            onChangeSeconds={(seconds) => onChangeSeconds(seconds, index)}
+            timer={timer}
+            onChangeTimer={(timer, seconds) => onChangeTimer(timer, seconds)}
+            onFinishTimer={(timer) => onFinishTimer(timer)}
           />
         ))
       }
