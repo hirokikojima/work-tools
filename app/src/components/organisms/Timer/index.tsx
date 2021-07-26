@@ -17,9 +17,9 @@ const Timer: FC<Props> = (props: Props) => {
     onFinishTimer
   } = props
 
-  const { seconds } = useTimer(timer, onFinishTimer)
+  // const { seconds } = useTimer(timer, onFinishTimer)
 
-  const time = TimeUtil.secondsToTime(seconds)
+  const time = TimeUtil.secondsToTime(timer.current)
 
   const onChange = (event: React.FocusEvent<HTMLInputElement>) => {
     onChangeTimer(timer, Number(event.target.value))

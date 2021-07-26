@@ -8,6 +8,8 @@ import TimerList from '../../organisms/TimerList'
 export type Props = {
   timers: Timer[]
   currentTimerIndex: number
+  onClickAddTimer: () => void
+  onClickRemoveTimer: (timer: Timer) => void
   onChangeTimer: (timer: Timer, seconds: number) => void
   onClickStartTimer: (timer: Timer) => void
   onClickStopTimer: (timer: Timer) => void
@@ -18,6 +20,8 @@ const TimerPageTemplate: FC<Props> = (props: Props) => {
   const {
     timers,
     currentTimerIndex,
+    onClickAddTimer,
+    onClickRemoveTimer,
     onChangeTimer,
     onClickStartTimer,
     onClickStopTimer,
@@ -32,6 +36,12 @@ const TimerPageTemplate: FC<Props> = (props: Props) => {
         </DefaultButton>
         <DefaultButton onClick={() => onClickStopTimer(timers[currentTimerIndex])}>
           Stop Timer
+        </DefaultButton>
+        <DefaultButton onClick={() => onClickAddTimer()}>
+          Add Timer
+        </DefaultButton>
+        <DefaultButton onClick={() => onClickRemoveTimer(timers[currentTimerIndex])}>
+          Remove Timer
         </DefaultButton>
       </CardHeader>
       <CardBody>
