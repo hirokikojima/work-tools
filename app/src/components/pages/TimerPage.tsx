@@ -1,28 +1,25 @@
-import React, { FC, useReducer, useState } from 'react'
+import React, { FC, useReducer } from 'react'
 import TimerPageTemplate from '../templates/TimerPageTemplate'
-import { addTimer, removeTimer, start, stop, countdown } from '../../actions/TimerActionCreator'
+import { addTimer, removeTimer, start, stop, next, countdown } from '../../actions/TimerActionCreator'
 import TimerReducer from '../../reducers/TimerReducer'
 import Timer from '../../domains/models/Timer'
 import EventEmitter from '../../libs/EventEmitter'
 
 const TimerPage: FC = () => {
 
-  const initialState = { timers: [] }
+  const initialState = { timers: [], index: 0 }
   const [state, dispatch] = useReducer(TimerReducer, initialState)
-
-  const [index, setIndex] = useState<number>(0)
 
   const handleAddTimer = () => {
     const timer = new Timer(0)
 
     const eventEmitter = new EventEmitter<number>()
-    eventEmitter.on(() => {
-      console.log('aaa')
+    eventEmitter.on((seconds) => {
       countdown(dispatch)
+      if (seconds === 0) next(dispatch)
     })
-
     timer.setEventEmitter(eventEmitter)
-    console.log(timer)
+    
     addTimer(dispatch, timer)
   }
 
@@ -34,18 +31,27 @@ const TimerPage: FC = () => {
     removeTimer(dispatch, timer)
   }
 
+  const handleStartTimer = () => {
+    start(dispatch)
+  }
+
+  const handleStopTimer = () => {
+    stop(dispatch)
+  }
+
+  const handleNextTimer = () => {
+    next(dispatch)
+  }
+
   return (
     <TimerPageTemplate
       timers={state.timers}
-      currentTimerIndex={index}
-      onClickAddTimer={() => handleAddTimer()}
+      onClickAddTimer={handleAddTimer}
       onClickRemoveTimer={(timer) => handleRemoveTimer(timer)}
       onChangeTimer={(timer, seconds) => timer.setSeconds(seconds)}
-      onClickStartTimer={(timer) => timer.start()}
-      onClickStopTimer={(timer) => timer.stop()}
-      onFinishTimer={() => {
-        setIndex((index) => index < state.timers.length - 1 ? index + 1 : 0)
-      }}
+      onClickStartTimer={handleStartTimer}
+      onClickStopTimer={handleStopTimer}
+      onFinishTimer={handleNextTimer}
     />
   )
 }

@@ -1,12 +1,13 @@
 import React, { FC } from 'react'
 import styles from './styles.module.scss'
+import { TrashCanIcon } from '../../atoms/Icon'
 import TimerModel from '../../../domains/models/Timer'
 import TimeUtil from '../../../utils/TimeUtil'
-import useTimer from './useTimer'
 
 export type Props = {
   timer: TimerModel
   onChangeTimer: (timer: TimerModel, seconds: number) => void
+  onClickRemoveTimer: (timer: TimerModel) => void
   onFinishTimer: (timer: TimerModel) => void
 }
 
@@ -14,10 +15,9 @@ const Timer: FC<Props> = (props: Props) => {
   const {
     timer,
     onChangeTimer,
+    onClickRemoveTimer,
     onFinishTimer
   } = props
-
-  // const { seconds } = useTimer(timer, onFinishTimer)
 
   const time = TimeUtil.secondsToTime(timer.current)
 
@@ -32,6 +32,7 @@ const Timer: FC<Props> = (props: Props) => {
       </div>
       <div className={styles.timer_right}>
         <input onBlur={onChange} />
+        <TrashCanIcon onClick={() => onClickRemoveTimer(timer)} />
       </div>
     </div>
   )

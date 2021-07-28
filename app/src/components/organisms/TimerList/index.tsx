@@ -7,6 +7,7 @@ import Timer from '../Timer'
 export type Props = {
   timers: TimerModel[]
   onChangeTimer: (timer: TimerModel, seconds: number) => void
+  onClickRemoveTimer: (timer: TimerModel) => void
   onFinishTimer: (timer: TimerModel) => void
 }
 
@@ -14,6 +15,7 @@ const TimerList: FC<Props> = (props: Props) => {
   const {
     timers,
     onChangeTimer,
+    onClickRemoveTimer,
     onFinishTimer
   } = props
 
@@ -25,6 +27,7 @@ const TimerList: FC<Props> = (props: Props) => {
             key={index}
             timer={timer}
             onChangeTimer={(timer, seconds) => onChangeTimer(timer, seconds)}
+            onClickRemoveTimer={(timer) => onClickRemoveTimer(timer)}
             onFinishTimer={(timer) => onFinishTimer(timer)}
           />
         ))

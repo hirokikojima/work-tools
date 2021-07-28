@@ -22,6 +22,9 @@ export type TimerStopAction = {
 export type TimerResetAction = {
   type: 'reset',
 }
+export type TimerNextAction = {
+  type: 'next',
+}
 export type TimerCountDownAction = {
   type: 'countdown',
 }
@@ -63,6 +66,13 @@ export const stop = (dispatch: Dispatch<TimerStopAction>): void => {
 export const reset = (dispatch: Dispatch<TimerResetAction>): void => {
   const action: TimerResetAction = {
     type: 'reset',
+  }
+  dispatch(action)
+}
+
+export const next = (dispatch: Dispatch<TimerNextAction>): void => {
+  const action: TimerNextAction = {
+    type: 'next',
   }
   dispatch(action)
 }

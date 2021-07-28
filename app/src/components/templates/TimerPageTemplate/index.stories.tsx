@@ -14,7 +14,6 @@ export const Default: Story<Props> = () => {
   return (
     <TimerPageTemplate
       timers={[new TimerModel(0), new TimerModel(60), new TimerModel(120)]}
-      currentTimerIndex={0}
       onClickAddTimer={action('onClickAddTimer')}
       onClickRemoveTimer={action('onClickRemoveTimer')}
       onChangeTimer={action('onChangeTimer')}

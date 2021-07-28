@@ -7,19 +7,17 @@ import TimerList from '../../organisms/TimerList'
 
 export type Props = {
   timers: Timer[]
-  currentTimerIndex: number
   onClickAddTimer: () => void
   onClickRemoveTimer: (timer: Timer) => void
   onChangeTimer: (timer: Timer, seconds: number) => void
-  onClickStartTimer: (timer: Timer) => void
-  onClickStopTimer: (timer: Timer) => void
-  onFinishTimer: (timer: Timer) => void
+  onClickStartTimer: () => void
+  onClickStopTimer: () => void
+  onFinishTimer: () => void
 }
 
 const TimerPageTemplate: FC<Props> = (props: Props) => {
   const {
     timers,
-    currentTimerIndex,
     onClickAddTimer,
     onClickRemoveTimer,
     onChangeTimer,
@@ -31,23 +29,21 @@ const TimerPageTemplate: FC<Props> = (props: Props) => {
   return (
     <Card>
       <CardHeader>
-        <DefaultButton onClick={() => onClickStartTimer(timers[currentTimerIndex])}>
+        <DefaultButton onClick={onClickStartTimer}>
           Start Timer
         </DefaultButton>
-        <DefaultButton onClick={() => onClickStopTimer(timers[currentTimerIndex])}>
+        <DefaultButton onClick={onClickStopTimer}>
           Stop Timer
         </DefaultButton>
-        <DefaultButton onClick={() => onClickAddTimer()}>
+        <DefaultButton onClick={onClickAddTimer}>
           Add Timer
-        </DefaultButton>
-        <DefaultButton onClick={() => onClickRemoveTimer(timers[currentTimerIndex])}>
-          Remove Timer
         </DefaultButton>
       </CardHeader>
       <CardBody>
         <TimerList
           timers={timers}
           onChangeTimer={onChangeTimer}
+          onClickRemoveTimer={onClickRemoveTimer}          
           onFinishTimer={onFinishTimer}
         />
       </CardBody>
