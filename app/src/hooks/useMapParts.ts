@@ -10,7 +10,7 @@ const useMapParts = (partTypes: FC[], children: ReactNode) => {
     }
 
     const index = partTypes.findIndex(partType => partType === child.type)
-    if (index !== -1) parts.push(child.props.children)
+    if (index !== -1) parts[index] = child.props.children
   })
 
   return parts
