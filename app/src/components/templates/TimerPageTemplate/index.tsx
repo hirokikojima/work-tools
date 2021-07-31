@@ -1,9 +1,12 @@
 import React, { FC } from 'react'
 import { DefaultButton } from '../../atoms/Button'
 import Card, { CardHeader, CardBody} from '../../atoms/Card'
+import DefaultLayout, { LayoutSide, LayoutHeader, LayoutContent } from '../../atoms/Layout/DefaultLayout'
 
 import Timer from '../../../domains/models/Timer'
 import TimerList from '../../organisms/TimerList'
+
+import { withStyle } from '../../../utils/decorators'
 
 export type Props = {
   timers: Timer[]
@@ -27,27 +30,45 @@ const TimerPageTemplate: FC<Props> = (props: Props) => {
   } = props
   
   return (
-    <Card>
-      <CardHeader>
-        <DefaultButton onClick={onClickStartTimer}>
-          Start Timer
-        </DefaultButton>
-        <DefaultButton onClick={onClickStopTimer}>
-          Stop Timer
-        </DefaultButton>
-        <DefaultButton onClick={onClickAddTimer}>
-          Add Timer
-        </DefaultButton>
-      </CardHeader>
-      <CardBody>
-        <TimerList
-          timers={timers}
-          onChangeTimer={onChangeTimer}
-          onClickRemoveTimer={onClickRemoveTimer}          
-          onFinishTimer={onFinishTimer}
-        />
-      </CardBody>
-    </Card>
+    <DefaultLayout>
+      <LayoutSide>
+        GlobalNav
+      </LayoutSide>
+      <LayoutHeader>
+        Header
+      </LayoutHeader>
+      <LayoutContent>
+        {
+          withStyle({
+            padding: '12px'
+          })(
+            <div>
+              <Card>
+                <CardHeader>
+                  <DefaultButton onClick={onClickStartTimer}>
+                    Start Timer
+                  </DefaultButton>
+                  <DefaultButton onClick={onClickStopTimer}>
+                    Stop Timer
+                  </DefaultButton>
+                  <DefaultButton onClick={onClickAddTimer}>
+                    Add Timer
+                  </DefaultButton>
+                </CardHeader>
+                <CardBody>
+                  <TimerList
+                    timers={timers}
+                    onChangeTimer={onChangeTimer}
+                    onClickRemoveTimer={onClickRemoveTimer}          
+                    onFinishTimer={onFinishTimer}
+                  />
+                </CardBody>
+              </Card>
+            </div>
+          )
+        }
+      </LayoutContent>
+    </DefaultLayout>
   )
 }
 

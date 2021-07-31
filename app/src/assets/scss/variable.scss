@@ -1,0 +1,65 @@
+:root {
+    /* ***** Color Values ***** */
+    --color-white: #fff;
+    --color-black: #000;
+    --color-gray: #8c8c8c;
+    --color-gray-dark: #1a1a1a;
+    --color-gray-light: #ddd;
+    --color-gray-p: #f6f6f6;
+    --color-green: #51c300;
+    --color-red: none;
+  
+    /* ***** Branding ***** */
+    --color-header: var(--color-gray-p);
+    --color-side: var(--color-gray-dark);
+    --color-main: var(--color-gray-light);
+    --color-base: var(--color-white);
+    --color-link: var(--color-green);
+    --color-link-visited: none;
+    --color-link-hover: none;
+    --color-link-active: none;
+    --color-success: none;
+    --color-danger: none;
+    --color-warning: none;
+    --color-info: var(--color-gray);
+    --color-primary: var(--color-green);
+    --color-secondary: none;
+    --color-accent: none;
+    --color-selected: var(--color-gray-p);
+  
+    /* ***** Media ***** */
+    /* font size */
+    --font-size-xxs: none;
+    --font-size-xs: .6rem;
+    --font-size-s: .8rem;
+    --font-size-m: 1rem;
+    --font-size-l: 1.2rem;
+    --font-size-xl: 1.4rem;
+    --font-size-xxl: 1.6rem;
+    --font-size-xxxl: 1.8rem;
+    --font-size-xxxxl: 2.0rem;
+  
+    /* font weight */
+    --font-weight-default: 400;
+    --font-weight-bold: 700;
+  
+    /* space */
+    --space: .5rem;
+  
+    /* line */
+    --line-width: 1px;
+    --line-style: solid;
+    --line-radius: 2px;
+    --line-border: var(--line-width) var(--line-style) var(--color-line);
+  
+    /* feedback */
+    --hover-feedback-opacity: .7;
+  
+    /* animation */
+    --hover-animation-duration: .1s;
+    --hover-animation-timing: ease-out;
+    --hover-animation: var(--hover-animation-duration) var(--hover-animation-timing);
+    --fade-animation-duration: .2s;
+    --fade-animation-timing: linear;
+    --fade-animation: var(--fade-animation-duration) var(--fade-animation-timing);
+  }
