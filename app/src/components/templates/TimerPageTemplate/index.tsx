@@ -2,6 +2,8 @@ import React, { FC } from 'react'
 import { DefaultButton } from '../../atoms/Button'
 import Card, { CardHeader, CardBody} from '../../atoms/Card'
 import DefaultLayout, { LayoutSide, LayoutHeader, LayoutContent } from '../../atoms/Layout/DefaultLayout'
+import GlobalNavigation from '../../organisms/GlobalNavigation'
+import Header from '../../organisms/Header'
 
 import Timer from '../../../domains/models/Timer'
 import TimerList from '../../organisms/TimerList'
@@ -32,10 +34,10 @@ const TimerPageTemplate: FC<Props> = (props: Props) => {
   return (
     <DefaultLayout>
       <LayoutSide>
-        GlobalNav
+        <GlobalNavigation />
       </LayoutSide>
       <LayoutHeader>
-        Header
+        <Header />
       </LayoutHeader>
       <LayoutContent>
         {

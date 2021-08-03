@@ -1,3 +1,6 @@
+import '../src/assets/scss/reset.scss'
+import '../src/assets/scss/styles.scss'
+import '../src/assets/scss/variable.scss'
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
