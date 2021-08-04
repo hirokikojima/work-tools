@@ -4,11 +4,12 @@ import Card, { CardHeader, CardBody} from '../../atoms/Card'
 import DefaultLayout, { LayoutSide, LayoutHeader, LayoutContent } from '../../atoms/Layout/DefaultLayout'
 import GlobalNavigation from '../../organisms/GlobalNavigation'
 import Header from '../../organisms/Header'
-
-import Timer from '../../../domains/models/Timer'
 import TimerList from '../../organisms/TimerList'
 
+import Timer from '../../../domains/models/Timer'
+
 import { withStyle } from '../../../utils/decorators'
+import { PlayIcon, StopIcon } from '../../atoms/Icon'
 
 export type Props = {
   timers: Timer[]
@@ -45,18 +46,16 @@ const TimerPageTemplate: FC<Props> = (props: Props) => {
             padding: '12px'
           })(
             <div>
+              <DefaultButton onClick={onClickStartTimer}>
+                <PlayIcon />
+              </DefaultButton>
+              <DefaultButton onClick={onClickStopTimer}>
+                <StopIcon />
+              </DefaultButton>
+              <DefaultButton onClick={onClickAddTimer}>
+                Add Timer
+              </DefaultButton>
               <Card>
-                <CardHeader>
-                  <DefaultButton onClick={onClickStartTimer}>
-                    Start Timer
-                  </DefaultButton>
-                  <DefaultButton onClick={onClickStopTimer}>
-                    Stop Timer
-                  </DefaultButton>
-                  <DefaultButton onClick={onClickAddTimer}>
-                    Add Timer
-                  </DefaultButton>
-                </CardHeader>
                 <CardBody>
                   <TimerList
                     timers={timers}
