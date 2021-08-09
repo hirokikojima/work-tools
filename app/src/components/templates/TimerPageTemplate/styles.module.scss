@@ -1,0 +1,15 @@
+.root {
+  .header {
+    width: 250px;
+  }
+
+  .header {
+    box-sizing: border-box;
+    height: 51px;
+  }
+
+  .main {
+    box-sizing: border-box;
+    height: calc(100% - 51px);
+  }
+}

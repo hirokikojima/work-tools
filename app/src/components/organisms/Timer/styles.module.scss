@@ -1,12 +1,21 @@
 .timer {
   display: flex;
   justify-content: space-between;
+  padding: 20px;
+}
 
-  &_left {
-    padding: 12px 8px;
-  }
+.current {
+  color: var(--color-gray);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: auto 0;
+}
 
-  &_right {
-    padding: 12px 8px;
+.form {
+  display: flex;
+  margin: auto 0;
+
+  .deleteButton {
+    margin-left: 12px;
   }
 }

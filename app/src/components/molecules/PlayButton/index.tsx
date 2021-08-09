@@ -2,7 +2,8 @@ import React, { FC, HTMLProps } from 'react'
 import classNames from 'classnames'
 import styles from './styles.module.scss'
 import Balloon from '../../atoms/Balloon'
-import HoverTipInteraction, { Tip } from "../../atoms/HoverTipInteraction";
+import { CircleButton } from '../../atoms/Button'
+import HoverTipInteraction, { Tip } from "../../atoms/HoverTipInteraction"
 import { PlayIcon } from '../../atoms/Icon'
 
 export type Props = {
@@ -18,7 +19,9 @@ const DeleteButton: FC<Props> = (props: Props) => {
   
   return (
     <HoverTipInteraction className={ classNames([styles.root, className]) } { ...rest }>
-      <PlayIcon onClick={ onClick } />
+      <CircleButton>
+        <PlayIcon height={40} width={40}  onClick={ onClick } />
+      </CircleButton>
       <Tip><Balloon>再生する</Balloon></Tip>
     </HoverTipInteraction>
   )

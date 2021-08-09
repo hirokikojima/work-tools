@@ -4,7 +4,7 @@ import styles from './styles.module.scss'
 import Balloon from '../../atoms/Balloon'
 import { CircleButton } from '../../atoms/Button'
 import HoverTipInteraction, { Tip } from "../../atoms/HoverTipInteraction";
-import { StopIcon } from '../../atoms/Icon'
+import { Repeat2Icon } from '../../atoms/Icon'
 
 export type Props = {
   onClick: () => void
@@ -20,9 +20,9 @@ const DeleteButton: FC<Props> = (props: Props) => {
   return (
     <HoverTipInteraction className={ classNames([styles.root, className]) } { ...rest }>
       <CircleButton>
-        <StopIcon height={40} width={40} onClick={ onClick } />
+        <Repeat2Icon height={40} width={40} onClick={ onClick } />
       </CircleButton>
-      <Tip><Balloon>停止する</Balloon></Tip>
+      <Tip><Balloon>繰り返しする</Balloon></Tip>
     </HoverTipInteraction>
   )
 }

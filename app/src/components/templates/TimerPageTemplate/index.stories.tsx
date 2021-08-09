@@ -19,7 +19,6 @@ export const Default: Story<Props> = () => {
       onChangeTimer={action('onChangeTimer')}
       onClickStartTimer={action('onClickStartTimer')}
       onClickStopTimer={action('onClickStopTimer')}
-      onFinishTimer={action('onFinishTimer')}
     />
   )
 }

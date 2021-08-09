@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import { DefaultButton } from '../../atoms/Button'
-import Card, { CardHeader, CardBody} from '../../atoms/Card'
+import { BlockButton } from '../../atoms/Button'
+import Card, { CardBody} from '../../atoms/Card'
 import DefaultLayout, { LayoutSide, LayoutHeader, LayoutContent } from '../../atoms/Layout/DefaultLayout'
 import GlobalNavigation from '../../organisms/GlobalNavigation'
 import Header from '../../organisms/Header'
@@ -9,7 +9,9 @@ import TimerList from '../../organisms/TimerList'
 import Timer from '../../../domains/models/Timer'
 
 import { withStyle } from '../../../utils/decorators'
-import { PlayIcon, StopIcon } from '../../atoms/Icon'
+import PlayButton from '../../molecules/PlayButton'
+import StopButton from '../../molecules/StopButton'
+import RepeatButton from '../../molecules/RepeatButton'
 
 export type Props = {
   timers: Timer[]
@@ -18,7 +20,6 @@ export type Props = {
   onChangeTimer: (timer: Timer, seconds: number) => void
   onClickStartTimer: () => void
   onClickStopTimer: () => void
-  onFinishTimer: () => void
 }
 
 const TimerPageTemplate: FC<Props> = (props: Props) => {
@@ -29,7 +30,6 @@ const TimerPageTemplate: FC<Props> = (props: Props) => {
     onChangeTimer,
     onClickStartTimer,
     onClickStopTimer,
-    onFinishTimer,
   } = props
   
   return (
@@ -46,25 +46,25 @@ const TimerPageTemplate: FC<Props> = (props: Props) => {
             padding: '12px'
           })(
             <div>
-              <DefaultButton onClick={onClickStartTimer}>
-                <PlayIcon />
-              </DefaultButton>
-              <DefaultButton onClick={onClickStopTimer}>
-                <StopIcon />
-              </DefaultButton>
-              <DefaultButton onClick={onClickAddTimer}>
-                Add Timer
-              </DefaultButton>
+              <div>
+                <PlayButton onClick={onClickStartTimer} />
+                <StopButton onClick={onClickStopTimer} />
+                <RepeatButton onClick={() => { alert('hogehoge') }} />
+              </div>
               <Card>
                 <CardBody>
                   <TimerList
                     timers={timers}
                     onChangeTimer={onChangeTimer}
                     onClickRemoveTimer={onClickRemoveTimer}          
-                    onFinishTimer={onFinishTimer}
                   />
                 </CardBody>
               </Card>
+              <div>
+                <BlockButton onClick={onClickAddTimer}>
+                  Add Timer
+                </BlockButton>
+              </div>
             </div>
           )
         }

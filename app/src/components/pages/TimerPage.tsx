@@ -57,7 +57,6 @@ const TimerPage: FC = () => {
       onChangeTimer={(timer, seconds) => timer.setSeconds(seconds)}
       onClickStartTimer={handleStartTimer}
       onClickStopTimer={handleStopTimer}
-      onFinishTimer={handleNextTimer}
     />
   )
 }

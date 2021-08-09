@@ -1,4 +1,9 @@
 .input {
+  &_text {
+    border: 1px solid #8c8c8c;
+    border-radius: 4px;
+  }
+  
   &_range {
     -webkit-appearance: none;
     background: transparent;

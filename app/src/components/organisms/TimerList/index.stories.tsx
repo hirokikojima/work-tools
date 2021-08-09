@@ -17,6 +17,5 @@ export const Default: Story<Props> = () => (
     timers={[new TimerModel(0), new TimerModel(60), new TimerModel(120)]}
     onChangeTimer={action('onChangeTimer')}
     onClickRemoveTimer={action('onClickRemoveTimer')}
-    onFinishTimer={action('onFinishTimer')}
   />
 )
