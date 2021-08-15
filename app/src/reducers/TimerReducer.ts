@@ -1,7 +1,7 @@
 import { AddTimerAction, RemoveTimerAction, TimerCountDownAction, TimerNextAction, TimerResetAction, TimerStartAction, TimerStopAction } from "../actions/TimerActionCreator"
 import { State } from '../contexts/TimerContext'
 
-export type TimerActionType = 
+export type TimerAction = 
   | AddTimerAction
   | RemoveTimerAction
   | TimerStartAction
@@ -10,7 +10,7 @@ export type TimerActionType =
   | TimerNextAction
   | TimerCountDownAction
 
-export default (state: State, action: TimerActionType): State => {
+export default (state: State, action: TimerAction): State => {
   switch(action.type) {
     case 'add':
       return {

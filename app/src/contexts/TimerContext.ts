@@ -1,15 +1,15 @@
 import { createContext } from 'react'
 import Timer from '../domains/models/Timer'
+import { TimerAction } from '../reducers/TimerReducer'
 
 export type State = {
   timers: Timer[],
   index: number
 }
 
-export default createContext({
-  state: {
-    timers: [],
-    index: 0
-  },
-  dispatch: null
-})
+export type TimerContext = {
+  state: State,
+  dispatch: React.Dispatch<TimerAction>
+}
+
+export default createContext({} as TimerContext)

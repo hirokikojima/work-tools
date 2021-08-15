@@ -1,6 +1,7 @@
-import React, { FC, useReducer } from 'react'
+import React, { FC, useEffect, useReducer } from 'react'
 import TimerPageTemplate from '../templates/TimerPageTemplate'
 import { addTimer, removeTimer, start, stop, next, countdown } from '../../actions/TimerActionCreator'
+import TimerContext from '../../contexts/TimerContext'
 import TimerReducer from '../../reducers/TimerReducer'
 import Timer from '../../domains/models/Timer'
 import EventEmitter from '../../libs/EventEmitter'
@@ -13,7 +14,7 @@ const TimerPage: FC = () => {
   const [state, dispatch] = useReducer(TimerReducer, initialState)
 
   const handleAddTimer = () => {
-    const timer = new Timer(0)
+    const timer = new Timer(60)
 
     const eventEmitter = new EventEmitter<number>()
     eventEmitter.on((seconds) => {
@@ -49,15 +50,21 @@ const TimerPage: FC = () => {
     next(dispatch)
   }
 
+  useEffect(() => {
+    handleAddTimer()
+  }, [])
+
   return (
-    <TimerPageTemplate
-      timers={state.timers}
-      onClickAddTimer={handleAddTimer}
-      onClickRemoveTimer={(timer) => handleRemoveTimer(timer)}
-      onChangeTimer={(timer, seconds) => timer.setSeconds(seconds)}
-      onClickStartTimer={handleStartTimer}
-      onClickStopTimer={handleStopTimer}
-    />
+    <TimerContext.Provider value={{ state, dispatch }}>
+      <TimerPageTemplate
+        timers={state.timers}
+        onClickAddTimer={handleAddTimer}
+        onClickRemoveTimer={(timer) => handleRemoveTimer(timer)}
+        onChangeTimer={(timer, seconds) => timer.setSeconds(seconds)}
+        onClickStartTimer={handleStartTimer}
+        onClickStopTimer={handleStopTimer}
+      />
+    </TimerContext.Provider>
   )
 }
 

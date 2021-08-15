@@ -23,9 +23,14 @@ const Button: FC<Props> = (props: Props) => {
 
 export default Button
 
-const buttonFactory = (className: string) => (props: Props) => {
+const buttonFactory = (baseClassName: string) => (props: Props) => {
+  const {
+    className,
+    ...rest
+  } = props
+  
   return (
-    <Button { ...props } className={styles[className]} />
+    <Button className={classNames([styles[baseClassName], className])} { ...rest } />
   )
 }
 

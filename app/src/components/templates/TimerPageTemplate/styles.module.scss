@@ -13,3 +13,18 @@
     height: calc(100% - 51px);
   }
 }
+
+.container {
+  margin: 32px auto;
+  max-width: 512px;
+
+  &-button {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+  }
+
+  &-timer {
+    margin-bottom: 20px;
+  }
+}

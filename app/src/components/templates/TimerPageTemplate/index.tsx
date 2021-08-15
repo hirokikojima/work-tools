@@ -8,10 +8,13 @@ import TimerList from '../../organisms/TimerList'
 
 import Timer from '../../../domains/models/Timer'
 
-import { withStyle } from '../../../utils/decorators'
 import PlayButton from '../../molecules/PlayButton'
 import StopButton from '../../molecules/StopButton'
 import RepeatButton from '../../molecules/RepeatButton'
+import styles from './styles.module.scss'
+import { PlusIcon } from '../../atoms/Icon'
+import { withStyle } from '../../../utils/decorators'
+import { BlockButtonWithPlusIcon } from '../../molecules/WithIconButton'
 
 export type Props = {
   timers: Timer[]
@@ -41,33 +44,27 @@ const TimerPageTemplate: FC<Props> = (props: Props) => {
         <Header />
       </LayoutHeader>
       <LayoutContent>
-        {
-          withStyle({
-            padding: '12px'
-          })(
-            <div>
-              <div>
-                <PlayButton onClick={onClickStartTimer} />
-                <StopButton onClick={onClickStopTimer} />
-                <RepeatButton onClick={() => { alert('hogehoge') }} />
-              </div>
-              <Card>
-                <CardBody>
-                  <TimerList
-                    timers={timers}
-                    onChangeTimer={onChangeTimer}
-                    onClickRemoveTimer={onClickRemoveTimer}          
-                  />
-                </CardBody>
-              </Card>
-              <div>
-                <BlockButton onClick={onClickAddTimer}>
-                  Add Timer
-                </BlockButton>
-              </div>
-            </div>
-          )
-        }
+        <div className={styles['container']}>
+          <div className={styles['container-button']}>
+            <PlayButton onClick={onClickStartTimer} />
+            <StopButton onClick={onClickStopTimer} />
+            <RepeatButton onClick={() => { alert('hogehoge') }} />
+          </div>
+          <Card className={styles['container-timer']}>
+            <CardBody>
+              <TimerList
+                timers={timers}
+                onChangeTimer={onChangeTimer}
+                onClickRemoveTimer={onClickRemoveTimer}          
+              />
+            </CardBody>
+          </Card>
+          <div>
+            <BlockButtonWithPlusIcon onClick={onClickAddTimer}>
+              追加する
+            </BlockButtonWithPlusIcon>
+          </div>
+        </div>
       </LayoutContent>
     </DefaultLayout>
   )
