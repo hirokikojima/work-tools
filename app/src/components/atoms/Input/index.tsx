@@ -27,3 +27,4 @@ const inputFactory = (type: string, className: string) => (props: Props) => {
 export const InputText = inputFactory('text', 'input_text')
 export const InputNumber = inputFactory('number', 'input_number')
 export const InputRange = inputFactory('range', 'input_range')
+export const InputTime = inputFactory('time', 'input_time')

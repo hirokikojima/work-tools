@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import styles from './styles.module.scss'
-import { InputText } from '../../atoms/Input'
+import { InputTime } from '../../atoms/Input'
 import DeleteButton from '../../molecules/DeleteButton'
 import TimerModel from '../../../domains/models/Timer'
 import TimeUtil from '../../../utils/TimeUtil'
@@ -18,17 +18,18 @@ const Timer: FC<Props> = (props: Props) => {
     onClickRemoveTimer,
   } = props
 
-  const time = TimeUtil.secondsToTime(timer.current)
+  const currentStr = TimeUtil.secondsToTime(timer.current)
+  const secondsStr = TimeUtil.secondsToTime(timer.seconds)
 
   const onChange = (event: React.FocusEvent<HTMLInputElement>) => {
-    onChangeTimer(timer, Number(event.target.value))
+    onChangeTimer(timer, TimeUtil.timeToSeconds(event.target.value))
   }
 
   return (
     <div className={styles.timer}>
-        <span className={styles.current}>{TimeUtil.formatTime(time)}</span>
+        <span className={styles.current}>{currentStr}</span>
         <div className={styles.form}>
-          <InputText onBlur={onChange} />
+          <InputTime step="1" onBlur={onChange} defaultValue={secondsStr} />
           <DeleteButton className={styles.deleteButton} onClick={() => onClickRemoveTimer(timer)} />
         </div>
     </div>
