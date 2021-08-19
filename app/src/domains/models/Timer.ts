@@ -4,6 +4,7 @@ export default class Timer {
   public seconds: number;
   public current: number;
   private intervalId?: number;
+  private worker?: Worker
   private eventEmitter?: EventEmitter<number>;
 
   constructor(seconds = 0) {
@@ -25,15 +26,26 @@ export default class Timer {
   }
 
   start(): void {
-    if (!this.intervalId) {
-      this.intervalId = window.setInterval(() => this.countDown(), 1000);
+    // if (!this.intervalId) {
+    //   this.intervalId = window.setInterval(() => this.countDown(), 1000);
+    // }
+
+    if (!this.worker) {
+      this.worker = new Worker('/work-tools/worker.js')
+      this.worker.addEventListener('message', () => {this.countDown(); console.log('aaa')})
+      this.worker.postMessage(this.current)
     }
   }
 
   stop(): void {
-    if (this.intervalId) {
-      window.clearInterval(this.intervalId);
-      this.intervalId = undefined;
+    // if (this.intervalId) {
+    //   window.clearInterval(this.intervalId);
+    //   this.intervalId = undefined;
+    // }
+
+    if (this.worker) {
+      this.worker.terminate()
+      this.worker = undefined
     }
   }
 
