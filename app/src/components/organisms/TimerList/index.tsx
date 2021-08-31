@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import classNames from 'classnames'
 import styles from './styles.module.scss'
-import TimerModel from '../../../domains/models/Timer'
+import TimerModel from '../../../libs/Timer'
 import Timer from '../Timer'
 
 export type Props = {

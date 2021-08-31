@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import Timer from '../domains/models/Timer'
+import Timer from '../libs/Timer'
 import { TimerAction } from '../reducers/TimerReducer'
 
 export type State = {

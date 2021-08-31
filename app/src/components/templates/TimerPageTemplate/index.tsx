@@ -6,7 +6,7 @@ import GlobalNavigation from '../../organisms/GlobalNavigation'
 import Header from '../../organisms/Header'
 import TimerList from '../../organisms/TimerList'
 
-import Timer from '../../../domains/models/Timer'
+import Timer from '../../../libs/Timer'
 
 import PlayButton from '../../molecules/PlayButton'
 import StopButton from '../../molecules/StopButton'

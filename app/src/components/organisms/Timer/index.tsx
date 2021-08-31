@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import styles from './styles.module.scss'
 import { InputTime } from '../../atoms/Input'
 import DeleteButton from '../../molecules/DeleteButton'
-import TimerModel from '../../../domains/models/Timer'
+import TimerModel from '../../../libs/Timer'
 import TimeUtil from '../../../utils/TimeUtil'
 
 export type Props = {

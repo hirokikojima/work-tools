@@ -1,5 +1,5 @@
 import { Dispatch } from "react"
-import Timer from "../domains/models/Timer"
+import Timer from "../libs/Timer"
 
 export type AddTimerAction = {
   type: 'add',

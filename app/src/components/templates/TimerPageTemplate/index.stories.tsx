@@ -2,7 +2,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react';
 
 import TimerPageTemplate, { Props } from './index';
-import TimerModel from '../../../domains/models/Timer';
+import TimerModel from '../../../libs/Timer';
 import { action } from '@storybook/addon-actions';
 
 export default {
