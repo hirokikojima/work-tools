@@ -12,10 +12,21 @@ export default {
 
 
 
-export const Default: Story<Props> = () => (
-  <TimerList
-    timers={[new TimerModel(0), new TimerModel(60), new TimerModel(120)]}
-    onChangeTimer={action('onChangeTimer')}
-    onClickRemoveTimer={action('onClickRemoveTimer')}
-  />
-)
+export const Default: Story<Props> = () => {
+  const audio = new Audio('/work-tools/files/wav_chime1.wav')
+  audio.load()
+  
+  const timers = [
+    new TimerModel(audio, 0),
+    new TimerModel(audio, 60),
+    new TimerModel(audio, 120)
+  ]
+  
+  return (
+    <TimerList
+      timers={timers}
+      onChangeTimer={action('onChangeTimer')}
+      onClickRemoveTimer={action('onClickRemoveTimer')}
+    />
+  )
+}

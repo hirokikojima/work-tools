@@ -10,10 +10,17 @@ export default {
   component: Timer,
 } as Meta;
 
-export const Default: Story<Props> = () => (
-  <Timer
-    timer={new TimerModal(120)}
-    onChangeTimer={action('onChangeTimer')}
-    onClickRemoveTimer={action('onClickRemoveTimer')}
-  />
-)
+export const Default: Story<Props> = () => {
+  const audio = new Audio('/work-tools/files/wav_chime1.wav')
+  audio.load()
+  
+  const timer = new TimerModal(audio, 120)
+
+  return (
+    <Timer
+      timer={timer}
+      onChangeTimer={action('onChangeTimer')}
+      onClickRemoveTimer={action('onClickRemoveTimer')}
+    />
+  )
+}

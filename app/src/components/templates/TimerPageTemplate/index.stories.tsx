@@ -11,9 +11,18 @@ export default {
 } as Meta;
 
 export const Default: Story<Props> = () => {
+  const audio = new Audio('/work-tools/files/wav_chime1.wav')
+  audio.load()
+  
+  const timers = [
+    new TimerModel(audio, 0),
+    new TimerModel(audio, 60),
+    new TimerModel(audio, 120)
+  ]
+  
   return (
     <TimerPageTemplate
-      timers={[new TimerModel(0), new TimerModel(60), new TimerModel(120)]}
+      timers={timers}
       onClickAddTimer={action('onClickAddTimer')}
       onClickRemoveTimer={action('onClickRemoveTimer')}
       onChangeTimer={action('onChangeTimer')}

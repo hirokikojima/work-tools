@@ -5,12 +5,14 @@ export type Listeners = {
 }
 
 export default class Timer {
+  public audio: HTMLAudioElement
   public seconds: number
   public current: number
   private listeners: Listeners
   private worker: Worker | null
 
-  constructor(seconds = 0) {
+  constructor(audio: HTMLAudioElement, seconds = 0) {
+    this.audio = audio
     this.seconds = seconds
     this.current = seconds
     this.listeners = {}
@@ -30,7 +32,7 @@ export default class Timer {
 
   start(): void {
     if (!this.worker) {
-      this.worker = new Worker('/work-tools/worker.js')
+      this.worker = new Worker('/work-tools/js/worker.js')
       this.worker.onmessage = (message: MessageEvent<number>) => {
         this.current = message.data
         this.callListener('countdown')
@@ -38,6 +40,7 @@ export default class Timer {
         if (this.current <= 0) {
           this.stop()
           this.reset()
+          this.playAudio()
           this.callListener('finish')
         }
       }
@@ -57,6 +60,10 @@ export default class Timer {
   reset(): void {
     this.current = this.seconds;
     this.callListener('reset')
+  }
+
+  playAudio(): void {
+    this.audio.play()
   }
 
   private callListener(listenerType: ListenerType) {
